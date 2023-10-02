@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona z automatycznym wysyłaniem danych</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Funkcja, która wykona się po załadowaniu strony
+            var dataToSend = {
+                external_ip: '', // Puste pole na adres IP
+            };
+
+            // Wysłanie żądania POST na serwer Flask
+            $.ajax({
+                type: 'POST',
+                url: '/send_data',
+                contentType: 'application/json',
+                data: JSON.stringify(dataToSend),
+                success: function(response) {
+                    console.log('Odpowiedź serwera:', response);
+                },
+                error: function(error) {
+                    console.error('Błąd:', error);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Witaj na stronie z automatycznym wysyłaniem danych!</h1>
+</body>
+</html>
